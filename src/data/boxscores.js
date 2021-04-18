@@ -1,4 +1,4 @@
-const boxscores = [
+const boxScores = [
   {
     gameDate: "10/23/2019 0:00",
     personId: 5696,
@@ -4881,4 +4881,4 @@ const boxscores = [
   },
 ];
 
-export default boxscores;
+export default boxScores;

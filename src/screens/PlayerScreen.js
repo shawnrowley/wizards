@@ -21,7 +21,7 @@ const PlayerScreen = () => {
 
   return (
     <div>
-      <h1>Wizard Players</h1>
+      <h1>Wizards Roster</h1>
       {loading ? (
         <Loader />
       ) : error ? (
