@@ -6,7 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { detailPlayer } from "../actions/playerActions";
 import players from "../data/players";
-import boxScores from "../data/boxScores";
+import boxScores from "../data/boxscores";
 
 const InfoScreen = ({ history, match }) => {
   const [player, setPlayer] = useState({});
