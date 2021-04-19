@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Table } from "react-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import FullBoxScore from "../components/FullBoxScore";
+import MinuteBoxScore from "../components/MinuteBoxScore";
 import { detailPlayer } from "../actions/playerActions";
 import players from "../data/players";
 import boxScores from "../data/boxscores";
@@ -11,6 +13,7 @@ import boxScores from "../data/boxscores";
 const InfoScreen = ({ history, match }) => {
   const [player, setPlayer] = useState({});
   const [scores, setScores] = useState([]);
+  const [full, setFull] = useState(true);
 
   // const dispatch = useDispatch();
 
@@ -30,7 +33,9 @@ const InfoScreen = ({ history, match }) => {
     setScores(playerScores);
   }, [match]);
 
-  const viewStatsHandler = () => {};
+  const toggleStatsHandler = () => {
+    setFull(!full);
+  };
 
   let loading = false;
   let error = false;
@@ -74,7 +79,7 @@ const InfoScreen = ({ history, match }) => {
 
               <ListGroup.Item>
                 <Button
-                  onClick={viewStatsHandler}
+                  onClick={toggleStatsHandler}
                   className="btn-block"
                   type="button"
                 >
@@ -86,7 +91,8 @@ const InfoScreen = ({ history, match }) => {
         </Row>
       )}
 
-      <h3> Box Scores</h3>
+      {full ? <h3>Full Box Score</h3> : <h3>36 mins Box Score</h3>}
+
       {loading ? (
         <Loader />
       ) : error ? (
@@ -95,7 +101,6 @@ const InfoScreen = ({ history, match }) => {
         <Table striped bordered hover responsive className="table-sm">
           <thead>
             <tr>
-              <th>PersonID</th>
               <th>Date</th>
               <th>Points</th>
               <th>FGA</th>
@@ -103,15 +108,13 @@ const InfoScreen = ({ history, match }) => {
             </tr>
           </thead>
           <tbody>
-            {scores.map((score) => (
-              <tr key={score.personId}>
-                <td>{score.personId}</td>
-                <td>{score.gameDate}</td>
-                <td>{score.points}</td>
-                <td>{score.fieldGoalsAttempted}</td>
-                <td>{score.plusMinus}</td>
-              </tr>
-            ))}
+            {scores.map((score) =>
+              full ? (
+                <FullBoxScore score={score} />
+              ) : (
+                <MinuteBoxScore score={score} />
+              )
+            )}
           </tbody>
         </Table>
       )}

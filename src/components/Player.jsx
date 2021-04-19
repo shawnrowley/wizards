@@ -17,7 +17,7 @@ const Player = ({ player }) => {
           </Link>
           <Card.Text as="h6">
             <strong>DOB: </strong>
-            {player.birthDate}
+            {player.birthDate.split(" ")[0]}
           </Card.Text>
           <Card.Text as="h6">
             <strong>Height: </strong>
