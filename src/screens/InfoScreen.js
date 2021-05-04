@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Row, Col, Image, ListGroup, Button, Table } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Button,
+  Table,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FullBoxScore from "../components/FullBoxScore";
@@ -14,6 +23,7 @@ const InfoScreen = ({ history, match }) => {
   const [player, setPlayer] = useState({});
   const [scores, setScores] = useState([]);
   const [full, setFull] = useState(true);
+  const [type, setType] = useState("all");
 
   // const dispatch = useDispatch();
 
@@ -35,6 +45,10 @@ const InfoScreen = ({ history, match }) => {
 
   const toggleStatsHandler = () => {
     setFull(!full);
+  };
+
+  const changeStatHandler = (changeType) => {
+    setType(changeType);
   };
 
   let loading = false;
@@ -110,7 +124,7 @@ const InfoScreen = ({ history, match }) => {
           <tbody>
             {scores.map((score) =>
               full ? (
-                <FullBoxScore score={score} />
+                <FullBoxScore score={score} type={type} />
               ) : (
                 <MinuteBoxScore score={score} />
               )

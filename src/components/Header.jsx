@@ -8,7 +8,17 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>Washington Wizards</Navbar.Brand>
+            <Navbar.Brand>
+              <img
+                src="images/i.png"
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+                alt=" "
+              ></img>
+              {"      "}
+              Washington Wizards
+            </Navbar.Brand>
           </LinkContainer>
         </Container>
       </Navbar>
